@@ -1,0 +1,21 @@
+{
+  "name": "cdp-sz-2016",
+  "version": "1.0.0",
+  "description": "packges file",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.1",
+    "gulp": "^3.9.0",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sequence": "^0.4.4",
+    "gulp-uglify": "^1.5.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
