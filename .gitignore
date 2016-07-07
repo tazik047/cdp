@@ -3,8 +3,3 @@ bower_components/
 
 #node
 node_modules/
-
-#compiled
-css/
-js/
-fonts/

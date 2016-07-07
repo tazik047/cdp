@@ -1,0 +1,24 @@
+html,
+body {
+  height: 100%;
+}
+section {
+  border: 1px solid #f00;
+}
+/*************************
+    Main Screen
+**************************/
+#main-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+#main-screen section {
+  width: 470px;
+  text-align: center;
+}
+#main-screen img {
+  width: 200px;
+  height: 200px;
+}
