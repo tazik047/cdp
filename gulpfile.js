@@ -8,96 +8,49 @@
         concat = require("gulp-concat"),
         rimraf = require("gulp-rimraf"),
         plumber = require("gulp-plumber"),
-        sequence = require("gulp-sequence");
+        sequence = require("gulp-sequence"),
+		less = require('gulp-less'),
+		path = require('path');
 
 
     var paths = {
-        js: "./assets/js/**/*.js",
-        components: "./assets/js/modules/*/*.js",
         libs: "./assets/js/libs/**/*.js",
-        css: "./assets/css/custom/**/*.css",
-        csslibs: "./assets/css/libs/**/*.css",
-        api: "./assets/js/api/**/*.js",
-        'const': "./assets/js/const/**/*.js",
-        global: "./assets/js/global/**/*.js",
+		css: "./css/*.css",
+		csslibs: './css/libs',
+		less: "./css/less/*.less",
         bower: "./bower_components/",
         output: {
             js: './js',
-            css: './css',
+            css: './css',			
             fonts: './fonts'
         },
     };
 
-    gulp.task("js-clean", function() {
-        return gulp.src(paths.output.js + "/**/*.js", { read: false })
-            .pipe(plumber())
-            .pipe(rimraf());
-    });
-
     gulp.task("css-clean", function () {
-        return gulp.src(paths.output.css + "/**/*.css", { read: false })
+        return gulp.src(paths.output.css + "/*.css", { read: false })
             .pipe(plumber())
             .pipe(rimraf());
     });
 
-    gulp.task("scripts", function () {
-        glob(paths.components, function (er, files) {
-            var i, result = [];
-            for (i = 0; i < files.length; i++) {
-                result.push(files[i].substr(0, files[i].lastIndexOf("/")));
-            }
-
-            var folders = uniq_fast(result);
-
-            for (i = 0; i < folders.length; i++) {
-                gulp.src(folders[i] + "/**/*.js")
-                    .pipe(plumber())
-                    .pipe(concat(folders[i].substr(folders[i].lastIndexOf("/")) + ".js"))
-                    //.pipe(uglify({}).on("error", console.log))
-                    .pipe(gulp.dest(paths.output.js));
-            }
-
-            gulp.src(paths.libs)
-                .pipe(plumber())
-                .pipe(concat("libs.js"))
-                //.pipe(uglify().on("error", console.log))
-                .pipe(gulp.dest(paths.output.js));
-
-            gulp.src([paths.global, paths['const']])
-                .pipe(plumber())
-                .pipe(concat("const.js"))
-                .pipe(gulp.dest(paths.output.js));
-
-            gulp.src(paths.api)
-                .pipe(plumber())
-                .pipe(concat("api.js"))
-                .pipe(uglify().on("error", console.log))
-                .pipe(gulp.dest(paths.output.js));
-
-            return gulp.src("./assets/js/*.js")
-                .pipe(plumber())
-                .pipe(concat("init.js"))
-                .pipe(uglify().on("error", console.log))
-                .pipe(gulp.dest(paths.output.js));
-        })
-    })
-
+	gulp.task("less", function(){
+		return gulp.src(paths.less)
+				.pipe(less({
+					paths: ['.']
+				}))
+				.pipe(gulp.dest(paths.output.css));
+	});
+	
     gulp.task("styles", function () {
-        gulp.src(paths.csslibs)
-            .pipe(plumber())
-            .pipe(concat("libs.css"))
-            .pipe(nano({zindex:false}).on('error', console.log))
-            .pipe(gulp.dest(paths.output.css));
-
+			
         return gulp.src(paths.css)
             .pipe(plumber())
             .pipe(concat("styles.css"))
             .pipe(nano({zindex:false}).on('error', console.log))
             .pipe(gulp.dest(paths.output.css));
-    })
-
-    gulp.task("js-vendor", function () {
-        var i, j, source;
+    });
+	
+	gulp.task("js-vendor", function () {
+        var i, source;
 
         source = JSON.parse(fs.readFileSync("./vendor-modules.json"));
 
@@ -118,10 +71,10 @@
             .pipe(concat("vendor.js"))
             .pipe(uglify().on("error", console.log))
             .pipe(gulp.dest(paths.output.js));
-    })
+    });
 
     gulp.task("css-vendor", function () {
-        var i, j, source;
+        var i, source;
 
         source = JSON.parse(fs.readFileSync("./vendor-modules.json"));
 
@@ -135,45 +88,28 @@
 
         gulp.src(source.css.bower.copy.concat(source.css.copy))
             .pipe(plumber())
-            .pipe(gulp.dest(paths.output.css));
+            .pipe(gulp.dest(paths.csslibs));
 
         return gulp.src(source.css.concat.concat(source.css.bower.concat))
             .pipe(plumber())
             .pipe(concat("vendor.css"))
-            .pipe(gulp.dest(paths.output.css));
-    })
+            .pipe(gulp.dest(paths.csslibs));
+    });
 
     gulp.task("fonts", function() {
-        gulp.src([bower("font-awesome/fonts/*.*"), "./vendor/fonts/**/*.*"])
+        gulp.src([bower("font-awesome/fonts/*.*")])
             .pipe(plumber())
             .pipe(gulp.dest(paths.output.fonts));
     });
 
     gulp.task('watch', function () {
-        gulp.watch(paths.css, ['styles']);
-        return gulp.watch(paths.js, ['scripts']);
+        return gulp.watch(paths.less, ['less', 'styles']);
     });
 
-    gulp.task("init", sequence(["js-clean", "css-clean"], "js-vendor", "css-vendor", "fonts", "styles", "scripts"));
-    gulp.task("default", sequence(["js-clean", "css-clean"], "js-vendor", "css-vendor", "fonts", "styles", "scripts", "watch"));
+    gulp.task("init", sequence(["css-clean"], "js-vendor", "css-vendor", "fonts", "less", "styles"));
+    gulp.task("default", sequence(["css-clean"], "js-vendor", "css-vendor", "fonts", "less", "styles", "watch"));
 
-    function uniq_fast(a) {
-        var seen = {};
-        var out = [];
-        var len = a.length;
-        var j = 0;
-        for (var i = 0; i < len; i++) {
-            var item = a[i];
-            if (seen[item] !== 1) {
-                seen[item] = 1;
-                out[j++] = item;
-            }
-        }
-
-        return out;
-    }
-
-    function bower(path) {
-        return paths.bower + path;
+    function bower(p) {
+        return paths.bower + p;
     }
 })()

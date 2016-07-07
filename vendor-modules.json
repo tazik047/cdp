@@ -31,7 +31,6 @@
         "copy": [
         ],
         "concat": [
-            "./vendor/js/**/*.js"
         ]
     },
     "css": {
@@ -51,7 +50,6 @@
 
         ],
         "concat": [
-            "./vendor/css/*.css"
         ]
     }
 }
