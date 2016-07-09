@@ -1,55 +1,32 @@
 {
-    "js": {
-        "bower": {
-            "copy": [
-                "bootstrap/dist/js/bootstrap.min.js",
-                "jquery/dist/jquery.min.js",
-                "jquery-ui/jquery-ui.min.js",
-				"moment/min/moment-with-locales.min.js"
-            ],
-            "concat": [
-                "jquery-validation/dist/jquery.validate.min.js",
-                "jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-				"jquery.cookie/jquery.cookie.js",
-				"dcjqaccordion/js/jquery.dcjqaccordion.2.7.min.js",
-				"jquery.scrollTo/jquery.scrollTo.min.js",
-				"jquery-slimscroll/jquery.slimscroll.min.js",
-				"jquery.nicescroll/dist/jquery.nicescroll.min.js",
-				"skycons/skycons.js",
-				"jquery-easing-original/jquery.easing.min.js",
-				"clndr/clndr.min.js",
-				"underscore/underscore-min.js",
-				"gauge.js/dist/gauge.min.js",
-				"bower-jquery-easyPieChart/dist/jquery.easypiechart.min.js",
-				"morris.js/morris.min.js",
-				"raphael/raphael-min.js",
-				"jscrollpane/script/jquery.jscrollpane.min.js",
-				"customSelect/jquery.customSelect.js",
-				"mustache.js/mustache.min.js"
-            ]
-        },
-        "copy": [
-        ],
-        "concat": [
-        ]
+  "js": {
+    "bower": {
+      "copy": [
+        "jquery/dist/jquery.min.js",
+        "jquery-ui/jquery-ui.min.js"
+      ],
+      "concat": [
+      ]
     },
-    "css": {
-        "bower": {
-            "copy": [
+    "copy": [
+    ],
+    "concat": [
+    ]
+  },
+  "css": {
+    "bower": {
+      "copy": [
 
-            ],
-            "concat": [
-                "bootstrap/dist/css/bootstrap.min.css",
-                "font-awesome/css/font-awesome.min.css",
-				"morris.js/morris.css",
-				"awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css",
-				"awesome-bootstrap-checkbox/demo/build.css"
-            ]
-        },
-        "copy": [
+      ],
+      "concat": [
+        "reset-css/reset.css",
+        "font-awesome/css/font-awesome.min.css"
+      ]
+    },
+    "copy": [
 
-        ],
-        "concat": [
-        ]
-    }
+    ],
+    "concat": [
+    ]
+  }
 }
