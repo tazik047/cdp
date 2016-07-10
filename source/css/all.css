@@ -107,7 +107,6 @@ section {
 #main-screen #experience li article > .title {
   float: left;
   width: 15%;
-  text-align: center;
 }
 #main-screen #experience li article > .title h3 {
   font: 16px/19px 'Open Sans', 'Arial', 'Tahoma', sans-serif;
