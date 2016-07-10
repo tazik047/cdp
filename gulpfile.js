@@ -1,7 +1,6 @@
 /*npm install --save-dev gulp glob gulp-uglify gulp-cssnano gulp-concat*/
 (function () {
     var gulp = require("gulp"),
-        glob = require("glob"),
         uglify = require("gulp-uglify"),
         nano = require("gulp-cssnano"),
         fs = require("fs"),
@@ -9,21 +8,19 @@
         rimraf = require("gulp-rimraf"),
         plumber = require("gulp-plumber"),
         sequence = require("gulp-sequence"),
-		less = require('gulp-less'),
-		path = require('path');
-
+        less = require('gulp-less');
 
     var paths = {
         libs: "./assets/js/libs/**/*.js",
-		css: "./css/*.css",
-		csslibs: './css/libs',
-		less: "./css/less/*.less",
+        css: "./source/css/*.css",
+        cssDir: "./source/css",
+		less: "./source/css/less/*.less",
         bower: "./bower_components/",
         output: {
             js: './js',
             css: './css',			
             fonts: './fonts'
-        },
+        }
     };
 
     gulp.task("css-clean", function () {
@@ -37,14 +34,14 @@
 				.pipe(less({
 					paths: ['.']
 				}))
-				.pipe(gulp.dest(paths.output.css));
+				.pipe(gulp.dest(paths.cssDir));
 	});
 	
     gulp.task("styles", function () {
 			
         return gulp.src(paths.css)
             .pipe(plumber())
-            .pipe(concat("styles.css"))
+            .pipe(concat("all.css"))
             .pipe(nano({zindex:false}).on('error', console.log))
             .pipe(gulp.dest(paths.output.css));
     });
@@ -88,12 +85,12 @@
 
         gulp.src(source.css.bower.copy.concat(source.css.copy))
             .pipe(plumber())
-            .pipe(gulp.dest(paths.csslibs));
+            .pipe(gulp.dest(paths.output.css));
 
         return gulp.src(source.css.concat.concat(source.css.bower.concat))
             .pipe(plumber())
             .pipe(concat("vendor.css"))
-            .pipe(gulp.dest(paths.csslibs));
+            .pipe(gulp.dest(paths.output.css));
     });
 
     gulp.task("fonts", function() {
@@ -103,7 +100,8 @@
     });
 
     gulp.task('watch', function () {
-        return gulp.watch(paths.less, ['less', 'styles']);
+        gulp.watch(paths.less, ['less']);
+        return gulp.watch(paths.css, ['styles']);
     });
 
     gulp.task("init", sequence(["css-clean"], "js-vendor", "css-vendor", "fonts", "less", "styles"));

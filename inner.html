@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <title>CV</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="css/libs/vendor.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="css/vendor.css" rel="stylesheet" />
     <link href="css/all.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -76,9 +76,9 @@
             </ul>
         </section>
         <section id="skills">
-            <div>Open edit</div>
+            <div id="add-skill-btn">Open edit</div>
             <h1>Skills</h1>
-            <form>
+            <form id="add-skill">
                 <div>
                     <label for="skill-name">Skill name</label>
                     <input type="text" id="skill-name" name="skill-name" placeholder="Enter skill name" />
@@ -149,22 +149,47 @@
             <h1>Contacts</h1>
             <ul>
                 <li>
-                    <div class="title">500 345 242</div>
-                </li>
-                <li>
-                    <div class="title">office@kamsolutions.pl</div>
-                </li>
-                <li>
-                    <div class="title">Twitter</div>
-                    <div class="description">https://twitter.com/WordPress</div>
-                </li>
-                <li>
-                    <div class="title">Facebook</div>
-                    <div class="description">https://www.facebook.com/facebook</div>
-                </li>
-                <li>
-                    <div class="title">Skype</div>
-                    <div class="description">kamsolutions.pl</div>
+                    <div class="icon">
+                        <i class="fa fa-phone fa-3x"></i>
+                    </div>
+                    <div>
+                        <div class="title">500 345 242</div>
+                    </div>
+                </li>   
+                <li>    
+                    <div class="icon">
+                        <i class="fa fa-envelope fa-3x"></i>
+                    </div>
+                    <div>
+                        <div class="title">office@kamsolutions.pl</div>
+                    </div>
+                </li>   
+                <li>    
+                    <div class="icon">
+                        <i class="fa fa-twitter fa-3x"></i>
+                    </div>
+                    <div>
+                        <div class="title">Twitter</div>
+                        <div class="description">https://twitter.com/WordPress</div>
+                    </div>
+                </li>   
+                <li>    
+                    <div class="icon">
+                        <i class="fa fa-facebook fa-3x"></i>
+                    </div>
+                    <div>
+                        <div class="title">Facebook</div>
+                        <div class="description">https://www.facebook.com/facebook</div>
+                    </div>
+                </li>   
+                <li>    
+                    <div class="icon">
+                        <i class="fa fa-skype fa-3x"></i>
+                    </div>
+                    <div>
+                        <div class="title">Skype</div>
+                        <div class="description">kamsolutions.pl</div>
+                    </div>
                 </li>
             </ul>
         </section>
