@@ -50,10 +50,24 @@ section {
     padding: 10px 20px;
     border-radius: 5px;
     color: @white;
+    border: none;
+    cursor: pointer;
+    font: 14px/1.3em @openSans, 'Arial', 'Tahoma', sans-serif;
 
     &:hover {
         background-color: @shamrock;
     }
+}
+
+.loader {
+    color: @shamrock;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
 }
 
 /*************************
@@ -139,7 +153,7 @@ section {
 
     @media screen and (max-width:400px) {
         margin-left: @mobile-sidebar-width;
-        min-width:100px;
+        min-width: 100px;
     }
 
     section {
@@ -154,6 +168,12 @@ section {
     }
 
     #education {
+        height: 400px;
+
+        .loader {
+            height: 350px;
+        }
+
         ul {
             max-height: 350px;
             overflow-y: scroll;
@@ -271,12 +291,112 @@ section {
     }
 
     #skills {
+        position: relative;
+
         #add-skill {
-            display: none;
+            border: 2px solid @alto;
+            padding: 20px;
+
+            div {
+                display: flex;
+                align-items: center;
+
+                label {
+                    white-space: nowrap;
+                }
+
+                input {
+                    border: 1px solid @gallery;
+                    padding: 10px 5px;
+                    margin: 10px;
+                    width: 100%;
+                }
+            }
         }
 
         #add-skill-btn {
-            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        &:hover {
+            #add-skill-btn {
+                display: block;
+            }
+        }
+
+        .skills {
+            article {
+                height: 30px;
+                color: @white;
+                background-color: @shamrock;
+                padding: 10px 15px;
+                box-sizing: border-box;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin: 5px 0;
+            }
+        }
+
+        .levels {
+            position: relative;
+            margin: 20px 0;
+            height: 20px;
+            color: @gallery;
+
+            &:before {
+                display: block;
+                content: "";
+                width: 100%;
+                position: absolute;
+                background-color: @gallery;
+                height: 2px;
+                top: 0;
+                left: 0;
+            }
+
+            li {
+                position: absolute;
+                top: 10px;
+
+                &:before {
+                    position: absolute;
+                    width: 2px;
+                    height: 10px;
+                    top: -20px;
+                    display: block;
+                    content: "";
+                    background-color: @gallery;
+                    left: 50%;
+                }
+            }
+
+            .beginer {
+                left: 0;
+
+                &:before {
+                    left: 0;
+                }
+            }
+
+            .proficient {
+                left: 30%;
+            }
+
+            .expert {
+                left: 70%;
+            }
+
+            .master {
+                right: 0;
+
+                &:before {
+                    left: 100%;
+                }
+            }
         }
     }
 

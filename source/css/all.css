@@ -19,9 +19,21 @@ a {
   padding: 10px 20px;
   border-radius: 5px;
   color: #fff;
+  border: none;
+  cursor: pointer;
+  font: 14px/1.3em 'Open Sans', 'Arial', 'Tahoma', sans-serif;
 }
 .btn:hover {
   background-color: #26c17e;
+}
+.loader {
+  color: #26c17e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hide {
+  display: none;
 }
 /*************************
     Welcome Screen
@@ -105,6 +117,12 @@ a {
   font-weight: 700;
   color: #26c17e;
   margin-bottom: 50px;
+}
+#main-screen #education {
+  height: 400px;
+}
+#main-screen #education .loader {
+  height: 350px;
 }
 #main-screen #education ul {
   max-height: 350px;
@@ -201,11 +219,93 @@ a {
   padding-bottom: 0;
   border-bottom: none;
 }
+#main-screen #skills {
+  position: relative;
+}
 #main-screen #skills #add-skill {
-  display: none;
+  border: 2px solid #ddd;
+  padding: 20px;
+}
+#main-screen #skills #add-skill div {
+  display: flex;
+  align-items: center;
+}
+#main-screen #skills #add-skill div label {
+  white-space: nowrap;
+}
+#main-screen #skills #add-skill div input {
+  border: 1px solid #eee;
+  padding: 10px 5px;
+  margin: 10px;
+  width: 100%;
 }
 #main-screen #skills #add-skill-btn {
-  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#main-screen #skills:hover #add-skill-btn {
+  display: block;
+}
+#main-screen #skills .skills article {
+  height: 30px;
+  color: #fff;
+  background-color: #26c17e;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 5px 0;
+}
+#main-screen #skills .levels {
+  position: relative;
+  margin: 20px 0;
+  height: 20px;
+  color: #eee;
+}
+#main-screen #skills .levels:before {
+  display: block;
+  content: "";
+  width: 100%;
+  position: absolute;
+  background-color: #eee;
+  height: 2px;
+  top: 0;
+  left: 0;
+}
+#main-screen #skills .levels li {
+  position: absolute;
+  top: 10px;
+}
+#main-screen #skills .levels li:before {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  top: -20px;
+  display: block;
+  content: "";
+  background-color: #eee;
+  left: 50%;
+}
+#main-screen #skills .levels .beginer {
+  left: 0;
+}
+#main-screen #skills .levels .beginer:before {
+  left: 0;
+}
+#main-screen #skills .levels .proficient {
+  left: 30%;
+}
+#main-screen #skills .levels .expert {
+  left: 70%;
+}
+#main-screen #skills .levels .master {
+  right: 0;
+}
+#main-screen #skills .levels .master:before {
+  left: 100%;
 }
 #main-screen #contacts li {
   display: flex;
