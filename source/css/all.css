@@ -102,6 +102,7 @@ a {
 #main-screen {
   margin-left: 250px;
   max-width: 900px;
+  transition-duration: 1s;
 }
 @media screen and (max-width: 400px) {
   #main-screen {
@@ -119,7 +120,7 @@ a {
   margin-bottom: 50px;
 }
 #main-screen #education {
-  height: 400px;
+  height: 430px;
 }
 #main-screen #education .loader {
   height: 350px;
@@ -307,6 +308,73 @@ a {
 #main-screen #skills .levels .master:before {
   left: 100%;
 }
+#main-screen #portfolio .tags li {
+  display: inline-block;
+}
+#main-screen #portfolio .tags li.active a {
+  color: #000;
+}
+#main-screen #portfolio .tags li a {
+  color: #eee;
+}
+#main-screen #portfolio .portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 520px;
+  align-content: space-between;
+  /*transition: all 2s;*/
+}
+#main-screen #portfolio .portfolio article {
+  width: 250px;
+  margin: 5px;
+  position: relative;
+  overflow: hidden;
+  /*transition: all 2s;*/
+}
+#main-screen #portfolio .portfolio article:hover .description {
+  top: 0;
+}
+#main-screen #portfolio .portfolio article img {
+  width: 100%;
+  height: 135px;
+}
+#main-screen #portfolio .portfolio article .description {
+  position: absolute;
+  right: 0;
+  width: 250px;
+  height: 140px;
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+  top: 135px;
+}
+#main-screen #portfolio .portfolio article .description:before {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+#main-screen #portfolio .portfolio article .description > div {
+  position: relative;
+  z-index: 2;
+}
+#main-screen #portfolio .portfolio article .description .title {
+  color: #26c17e;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+#main-screen #portfolio .portfolio article .description .link {
+  margin-top: 10px;
+}
+#main-screen #portfolio .portfolio article .description .link a {
+  color: #26c17e;
+}
 #main-screen #contacts li {
   display: flex;
   align-items: center;
@@ -360,6 +428,9 @@ a {
   font-size: 12px;
   font-weight: 300;
 }
+body.hide-menu #main-screen {
+  margin-left: 0;
+}
 /*************************
     Main navigation
 **************************/
@@ -372,6 +443,7 @@ nav {
   text-align: center;
   background-color: #000614;
   color: #fff;
+  transition-duration: 1s;
 }
 nav .photo {
   width: 100px;
@@ -402,7 +474,7 @@ nav li a i {
   margin-right: 15px;
   min-width: 40px;
 }
-nav li a:active {
+nav li a.active {
   color: #26c17e;
 }
 nav li a:hover {
@@ -457,5 +529,13 @@ nav .toggle-menu:hover {
   nav .go-back a i:hover {
     border-radius: 5px;
     background-color: #26c17e;
+  }
+}
+body.hide-menu > nav {
+  left: -250px;
+}
+@media screen and (max-width: 400px) {
+  body.hide-menu > nav {
+    left: -65px;
   }
 }

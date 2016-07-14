@@ -150,6 +150,7 @@ section {
 #main-screen {
     margin-left: @sidebar-width;
     max-width: 900px;
+    transition-duration: 1s;
 
     @media screen and (max-width:400px) {
         margin-left: @mobile-sidebar-width;
@@ -168,7 +169,7 @@ section {
     }
 
     #education {
-        height: 400px;
+        height: 430px;
 
         .loader {
             height: 350px;
@@ -401,6 +402,89 @@ section {
     }
 
     #portfolio {
+        .tags {
+            li {
+                display: inline-block;
+
+                &.active {
+                    a {
+                        color: @black;
+                    }
+                }
+
+                a {
+                    color: @gallery;
+                }
+            }
+        }
+
+        .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 520px;
+            align-content: space-between;
+            /*transition: all 2s;*/
+            article {
+                width: 250px;
+                margin: 5px;
+                position: relative;
+                overflow: hidden;
+                /*transition: all 2s;*/
+                &:hover {
+                    .description {
+                        top: 0;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: 135px;
+                }
+
+                .description {
+                    position: absolute;
+                    right: 0;
+                    width: 250px;
+                    height: 140px;
+                    color: @white;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    transition-duration: 0.5s;
+                    top: 135px;
+
+                    &:before {
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.7);
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        content: "";
+                    }
+
+                    & > div {
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .title {
+                        color: @shamrock;
+                        font-size: 15px;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                    }
+
+                    .link {
+                        margin-top: 10px;
+
+                        a {
+                            color: @shamrock;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     #contacts {
@@ -472,6 +556,9 @@ section {
     }
 }
 
+body.hide-menu #main-screen {
+    margin-left: 0;
+}
 
 /*************************
     Main navigation
@@ -485,6 +572,7 @@ nav {
     text-align: center;
     background-color: @midnight;
     color: @white;
+    transition-duration: 1s;
     .section();
 
     .photo {
@@ -520,7 +608,7 @@ nav {
                 min-width: 40px;
             }
 
-            &:active {
+            &.active {
                 color: @shamrock;
             }
 
@@ -591,5 +679,13 @@ nav {
                 }
             }
         }
+    }
+}
+
+body.hide-menu > nav {
+    left: -@sidebar-width;
+
+    @media screen and (max-width:400px) {
+        left: -@mobile-sidebar-width;
     }
 }
