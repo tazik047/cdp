@@ -3,6 +3,7 @@
     setTimeout(function () {
         $('#education .loader').hide();
         $('#education>ul').show(500);
+        $('#education').addClass('loaded');
     }, 5000);
 })(jQuery);
 

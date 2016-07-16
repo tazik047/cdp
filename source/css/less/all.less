@@ -170,6 +170,24 @@ section {
 
     #education {
         height: 430px;
+        position: relative;
+
+        &.loaded:before {
+            display: block;
+        }
+
+        &:before {
+            content: "";
+            width: 2px;
+            background-color: @shamrock;
+            background: linear-gradient(to bottom, @white 0%, @shamrock 30px);
+            position: absolute;
+            height: 368px;
+            left: 15px;
+            top: 60px;
+            z-index: 1;
+            display: none;
+        }
 
         .loader {
             height: 350px;
@@ -181,18 +199,6 @@ section {
 
             li {
                 padding-bottom: 10px;
-                position: relative;
-
-                &:before {
-                    content: "";
-                    border-left: 2px solid @shamrock;
-                    position: absolute;
-                    display: block;
-                    height: 100%;
-                    left: 15px;
-                    top: -10px;
-                    z-index: 1;
-                }
 
                 article {
 
